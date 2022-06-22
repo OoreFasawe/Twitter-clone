@@ -143,6 +143,7 @@
                                                 <constraint firstItem="RuN-E3-ywV" firstAttribute="bottom" secondItem="U6f-8Q-QQh" secondAttribute="bottom" id="JdL-Cv-Odc"/>
                                                 <constraint firstAttribute="trailing" secondItem="d5f-hl-kSv" secondAttribute="trailing" constant="8" id="PwW-HP-xMs"/>
                                                 <constraint firstItem="6ei-Mf-yDz" firstAttribute="bottom" secondItem="U6f-8Q-QQh" secondAttribute="bottom" id="S3K-OC-aza"/>
+                                                <constraint firstItem="l3e-4x-q6D" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="d5f-hl-kSv" secondAttribute="trailing" id="TQT-VI-ZcG"/>
                                                 <constraint firstAttribute="bottom" secondItem="U6f-8Q-QQh" secondAttribute="bottom" constant="8" id="UH1-Og-kGm"/>
                                                 <constraint firstItem="6wE-1G-yAx" firstAttribute="leading" secondItem="6ei-Mf-yDz" secondAttribute="trailing" constant="8" id="Vid-H1-JDV"/>
                                                 <constraint firstItem="l3e-4x-q6D" firstAttribute="top" secondItem="U6f-8Q-QQh" secondAttribute="top" id="W5n-th-AA4"/>
@@ -226,10 +227,12 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="SteelSeries has officially added two new products to its catalog--the Apex Pro Mini and Apex Pro Mini Wireless keyb" translatesAutoresizingMaskIntoConstraints="NO" id="4Tl-ef-bkf">
-                                <rect key="frame" x="0.0" y="88" width="414" height="277"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="SteelSeries has officially added two new products to its catalog--the Apex Pro Mini and Apex Pro Mini Wireless keyb" translatesAutoresizingMaskIntoConstraints="NO" id="4Tl-ef-bkf">
+                                <rect key="frame" x="20" y="64" width="374" height="277"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="277" id="5u0-Mz-igy"/>
+                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -237,6 +240,11 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="hMF-jo-Sfx"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="4Tl-ef-bkf" firstAttribute="leading" secondItem="hMF-jo-Sfx" secondAttribute="leading" constant="20" id="3vv-En-njp"/>
+                            <constraint firstItem="hMF-jo-Sfx" firstAttribute="trailing" secondItem="4Tl-ef-bkf" secondAttribute="trailing" constant="20" id="BOp-jq-6rO"/>
+                            <constraint firstItem="4Tl-ef-bkf" firstAttribute="top" secondItem="hMF-jo-Sfx" secondAttribute="top" constant="8" id="UJe-4x-qrw"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FxZ-Jb-JfL">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="quD-4u-DBq">
