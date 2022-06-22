@@ -13,9 +13,10 @@
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "ComposeViewController.h"
 
 
-@interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets;
 @property (nonatomic, strong)UIRefreshControl *refreshControl;
@@ -46,10 +47,6 @@
     [self.refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
     [self.tableView insertSubview:self.refreshControl atIndex:0];
     
-    
-    
-    
-    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,15 +74,22 @@
     }];
 }
 
-/*
+
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
+//In a storyboard-based application, you will often want to do a little preparation before navigation
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    UINavigationController *navigationController = [segue destinationViewController];
+    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+    composeController.delegate = self;
 }
-*/
+
+- (void)didTweet:(nonnull Tweet *)tweet {
+    [self.arrayOfTweets insertObject:tweet atIndex:0];
+    [self.tableView reloadData];
+}
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
@@ -112,15 +116,8 @@
     
     tweetCell.profilePicture.image = nil;
     [tweetCell.profilePicture setImageWithURL:profilePictureUrl];
-//    NSURL *posterURL = movie.posterURL;
-//    cell.posterImage.image = nil;
-//    [cell.posterImage setImageWithURL:posterURL];
     
     return tweetCell;
 }
-
-
-
-
 
 @end
