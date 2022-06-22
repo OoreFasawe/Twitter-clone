@@ -103,8 +103,9 @@
     tweetCell.numRetweets.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
     tweetCell.numLikes.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     
-    NSString *URLString = tweet.user.profilePicture;
-    NSURL *profilePictureUrl = [NSURL URLWithString:URLString];
+    NSString *profilePictureURLString = tweet.user.profilePicture;
+        NSString *profilePictureURLStringHighQual = [profilePictureURLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    NSURL *profilePictureUrl = [NSURL URLWithString:profilePictureURLStringHighQual];
     
     //not entirely sure why we're saving this yet, will ask later in class, also landscape isn't quite working
     NSData *profilePictureUrlData = [NSData dataWithContentsOfURL:profilePictureUrl];
