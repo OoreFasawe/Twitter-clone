@@ -57,11 +57,12 @@
 -(void)fetchTweets{
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
-        if (tweets) {
+        if (tweets.count > 0) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
+            //NSLog(@"%@", tweets);
             for (Tweet *tweet in tweets) {
                 NSString *text = tweet.text;
-                NSLog(@"%@", text);
+                
             }
             self.arrayOfTweets = (NSMutableArray *) tweets;
             [self.refreshControl endRefreshing];
@@ -106,13 +107,13 @@
     tweetCell.author.text = tweet.user.screenName;
     tweetCell.numRetweets.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
     tweetCell.numLikes.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
-    
+    tweetCell.tweet = tweet;
     NSString *profilePictureURLString = tweet.user.profilePicture;
         NSString *profilePictureURLStringHighQual = [profilePictureURLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     NSURL *profilePictureUrl = [NSURL URLWithString:profilePictureURLStringHighQual];
     
     //not entirely sure why we're saving this yet, will ask later in class, also landscape isn't quite working
-    NSData *profilePictureUrlData = [NSData dataWithContentsOfURL:profilePictureUrl];
+//    NSData *profilePictureUrlData = [NSData dataWithContentsOfURL:profilePictureUrl];
     
     tweetCell.profilePicture.image = nil;
     [tweetCell.profilePicture setImageWithURL:profilePictureUrl];
