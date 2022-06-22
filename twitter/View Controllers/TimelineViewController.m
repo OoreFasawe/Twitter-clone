@@ -11,9 +11,14 @@
 #import "AppDelegate.h"
 #import "LoginViewController.h"
 #import "Tweet.h"
+#import "TweetCell.h"
+#import "UIImageView+AFNetworking.h"
 
-@interface TimelineViewController ()
+
+@interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets;
+@property (nonatomic, strong)UIRefreshControl *refreshControl;
 
 @end
 
@@ -31,6 +36,28 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    
+    [self fetchTweets];
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchTweets) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
+    
+    
+    
+    
+    
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+-(void)fetchTweets{
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
@@ -40,15 +67,14 @@
                 NSLog(@"%@", text);
             }
             self.arrayOfTweets = (NSMutableArray *) tweets;
+            [self.refreshControl endRefreshing];
+            [self.tableView reloadData];
         } else {
             NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
+        
+        
     }];
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*
@@ -60,6 +86,40 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+- (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return self.arrayOfTweets.count;
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    TweetCell *tweetCell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    Tweet *tweet = self.arrayOfTweets[indexPath.row];
+
+    tweetCell.tweetText.text = tweet.text;
+    tweetCell.author.text = tweet.user.screenName;
+    tweetCell.numRetweets.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
+    tweetCell.numLikes.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
+    
+    NSString *URLString = tweet.user.profilePicture;
+    NSURL *profilePictureUrl = [NSURL URLWithString:URLString];
+    
+    //not entirely sure why we're saving this yet, will ask later in class, also landscape isn't quite working
+    NSData *profilePictureUrlData = [NSData dataWithContentsOfURL:profilePictureUrl];
+    
+    tweetCell.profilePicture.image = nil;
+    [tweetCell.profilePicture setImageWithURL:profilePictureUrl];
+//    NSURL *posterURL = movie.posterURL;
+//    cell.posterImage.image = nil;
+//    [cell.posterImage setImageWithURL:posterURL];
+    
+    return tweetCell;
+}
+
+
+
 
 
 @end
