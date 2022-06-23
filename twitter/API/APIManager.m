@@ -108,7 +108,6 @@ static NSString * const baseURLString = @"https://api.twitter.com";
 }
 
 - (void)retweet:(Tweet *)tweet completion:(void (^)(Tweet *tweet, NSError *error))completion {
-
     NSString *urlFirstString = @"1.1/statuses/retweet/";
     NSString *idString = tweet.idStr;
     NSString *urlString = [[urlFirstString stringByAppendingString:idString] stringByAppendingString:@".json"];

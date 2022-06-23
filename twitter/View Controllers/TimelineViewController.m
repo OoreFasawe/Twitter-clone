@@ -14,6 +14,7 @@
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
+#import "DateTools.h"
 
 
 @interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate>
@@ -59,11 +60,6 @@
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets.count > 0) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-            //NSLog(@"%@", tweets);
-            for (Tweet *tweet in tweets) {
-                NSString *text = tweet.text;
-                
-            }
             self.arrayOfTweets = (NSMutableArray *) tweets;
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
@@ -104,10 +100,19 @@
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
 
     tweetCell.tweetText.text = tweet.text;
-    tweetCell.author.text = tweet.user.screenName;
+    tweetCell.author.text = tweet.user.name;
+    tweetCell.username.text = [@"@" stringByAppendingString:tweet.user.screenName];
     tweetCell.numRetweets.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
     tweetCell.numLikes.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     tweetCell.tweet = tweet;
+    
+//    NSDate *date = (NSDate *) tweet.createdAtString;
+//    NSLog(@"%@", tweet.createdAtString);
+//    NSLog(@"%@", date);
+//    
+//    tweetCell.timeSinceTweetLabel.text = [date shortTimeAgoSinceNow];
+//    NSLog(@"%@",tweetCell.timeSinceTweetLabel.text );
+    tweetCell.timeSinceTweetLabel.text = [@". " stringByAppendingString:[tweet.timeSinceNowDate shortTimeAgoSinceNow]];
     NSString *profilePictureURLString = tweet.user.profilePicture;
         NSString *profilePictureURLStringHighQual = [profilePictureURLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     NSURL *profilePictureUrl = [NSURL URLWithString:profilePictureURLStringHighQual];
