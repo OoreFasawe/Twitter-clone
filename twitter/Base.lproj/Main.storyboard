@@ -224,7 +224,7 @@
                             </button>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="ERJ-Nq-wsx">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="VgS-Y2-iT6">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="VgS-Y2-iT6">
                                 <rect key="frame" x="302" y="7.5" width="92" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
@@ -268,7 +268,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@slimsuki_" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g2S-3i-1dy">
-                                        <rect key="frame" x="79" y="33" width="86" height="20"/>
+                                        <rect key="frame" x="79" y="31" width="86" height="20"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -300,6 +300,7 @@
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1aH-Ws-f5o">
                                         <rect key="frame" x="8" y="259.5" width="8.5" height="14.5"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -310,50 +311,79 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleAspectFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="APN-gs-JaR">
-                                        <rect key="frame" x="8" y="292" width="35" height="29"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="APN-gs-JaR">
+                                        <rect key="frame" x="-8" y="280" width="58" height="48"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="retweet-icon" title=" "/>
+                                        <buttonConfiguration key="configuration" style="plain" image="retweet-icon" title=" ">
+                                            <backgroundConfiguration key="background">
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </backgroundConfiguration>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="retweetButton:" destination="mZQ-fq-ZUZ" eventType="touchUpInside" id="MSt-M5-zZF"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBx-bx-kf1">
-                                        <rect key="frame" x="58" y="291" width="35" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBx-bx-kf1">
+                                        <rect key="frame" x="58" y="276" width="58" height="52"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="favor-icon" title=" "/>
+                                        <buttonConfiguration key="configuration" style="plain" image="favor-icon" title=" ">
+                                            <backgroundConfiguration key="background">
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </backgroundConfiguration>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="likeButton:" destination="mZQ-fq-ZUZ" eventType="touchUpInside" id="gEQ-Fc-qBC"/>
+                                        </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiv-jJ-QQR">
-                                        <rect key="frame" x="103" y="299" width="31" height="23"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oiv-jJ-QQR">
+                                        <rect key="frame" x="124" y="284" width="58" height="44"/>
+                                        <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="message-icon" title=" "/>
+                                        <buttonConfiguration key="configuration" style="plain" image="message-icon" title=" ">
+                                            <backgroundConfiguration key="background">
+                                                <color key="backgroundColor" systemColor="tintColor"/>
+                                            </backgroundConfiguration>
+                                        </buttonConfiguration>
+                                        <connections>
+                                            <action selector="messageButton:" destination="mZQ-fq-ZUZ" eventType="touchUpInside" id="boP-Lh-mWM"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="1aH-Ws-f5o" firstAttribute="leading" secondItem="bpv-qR-Ah6" secondAttribute="leading" id="22u-Kf-Lfd"/>
                                     <constraint firstItem="1aH-Ws-f5o" firstAttribute="bottom" secondItem="ge7-PS-yC1" secondAttribute="bottom" id="9G1-xB-WUu"/>
                                     <constraint firstItem="4vd-Rq-HhZ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="bCq-pm-KN7" secondAttribute="trailing" id="AQY-rM-uhM"/>
+                                    <constraint firstItem="oiv-jJ-QQR" firstAttribute="leading" secondItem="mBx-bx-kf1" secondAttribute="trailing" constant="8" id="FXD-Bw-Jvl"/>
                                     <constraint firstItem="AFY-hD-Er6" firstAttribute="bottom" secondItem="ge7-PS-yC1" secondAttribute="bottom" id="FbA-ik-SsR"/>
+                                    <constraint firstItem="oiv-jJ-QQR" firstAttribute="top" secondItem="APN-gs-JaR" secondAttribute="top" constant="4" id="GYd-64-68U"/>
                                     <constraint firstItem="rNr-RO-TDs" firstAttribute="bottom" secondItem="ge7-PS-yC1" secondAttribute="bottom" id="JOt-zN-4MI"/>
+                                    <constraint firstItem="oiv-jJ-QQR" firstAttribute="bottom" secondItem="APN-gs-JaR" secondAttribute="bottom" id="Jly-cG-sTb"/>
                                     <constraint firstItem="AFY-hD-Er6" firstAttribute="leading" secondItem="ge7-PS-yC1" secondAttribute="trailing" constant="20" id="KIK-JY-FJw"/>
                                     <constraint firstItem="AFY-hD-Er6" firstAttribute="top" secondItem="ge7-PS-yC1" secondAttribute="top" id="M7Q-ba-wBF"/>
                                     <constraint firstItem="rNr-RO-TDs" firstAttribute="top" secondItem="ge7-PS-yC1" secondAttribute="top" id="Mbl-xU-2vx"/>
                                     <constraint firstItem="rNr-RO-TDs" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="4vd-Rq-HhZ" secondAttribute="trailing" id="Ms3-od-7it"/>
+                                    <constraint firstItem="APN-gs-JaR" firstAttribute="leading" secondItem="1aH-Ws-f5o" secondAttribute="leading" constant="-16" id="OQN-AI-Mdt"/>
                                     <constraint firstItem="1aH-Ws-f5o" firstAttribute="top" secondItem="ge7-PS-yC1" secondAttribute="top" id="OTJ-EX-5fe"/>
                                     <constraint firstItem="rNr-RO-TDs" firstAttribute="leading" secondItem="AFY-hD-Er6" secondAttribute="trailing" constant="4" id="Ojg-M9-ScO"/>
                                     <constraint firstItem="g2S-3i-1dy" firstAttribute="leading" secondItem="bCq-pm-KN7" secondAttribute="leading" id="Qfr-NU-5qX"/>
+                                    <constraint firstItem="mBx-bx-kf1" firstAttribute="top" secondItem="APN-gs-JaR" secondAttribute="top" constant="-4" id="RfW-gl-XMA"/>
                                     <constraint firstItem="ge7-PS-yC1" firstAttribute="leading" secondItem="1aH-Ws-f5o" secondAttribute="trailing" constant="4" id="Rzb-MX-XXq"/>
                                     <constraint firstItem="7rw-Ru-xbd" firstAttribute="leading" secondItem="XAu-zf-YNe" secondAttribute="leading" constant="8" id="TpO-4K-eKv"/>
-                                    <constraint firstItem="g2S-3i-1dy" firstAttribute="top" secondItem="bCq-pm-KN7" secondAttribute="bottom" constant="4" id="TwD-Dy-2tC"/>
+                                    <constraint firstItem="g2S-3i-1dy" firstAttribute="top" secondItem="bCq-pm-KN7" secondAttribute="bottom" constant="2" id="TwD-Dy-2tC"/>
                                     <constraint firstItem="4vd-Rq-HhZ" firstAttribute="top" secondItem="7rw-Ru-xbd" secondAttribute="bottom" constant="16" id="XKI-eQ-RXD"/>
                                     <constraint firstItem="7rw-Ru-xbd" firstAttribute="top" secondItem="XAu-zf-YNe" secondAttribute="top" constant="8" id="Yi5-eu-mXB"/>
                                     <constraint firstItem="1aH-Ws-f5o" firstAttribute="top" secondItem="bpv-qR-Ah6" secondAttribute="bottom" constant="16" id="Z3M-Hi-qJJ"/>
                                     <constraint firstItem="4vd-Rq-HhZ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="g2S-3i-1dy" secondAttribute="trailing" id="aX3-jM-5N1"/>
                                     <constraint firstItem="bCq-pm-KN7" firstAttribute="leading" secondItem="7rw-Ru-xbd" secondAttribute="trailing" constant="8" id="aij-83-suX"/>
+                                    <constraint firstItem="mBx-bx-kf1" firstAttribute="bottom" secondItem="APN-gs-JaR" secondAttribute="bottom" id="cHK-vY-fXJ"/>
                                     <constraint firstItem="bpv-qR-Ah6" firstAttribute="top" secondItem="4vd-Rq-HhZ" secondAttribute="bottom" constant="16" id="e1R-RW-IEQ"/>
                                     <constraint firstItem="bCq-pm-KN7" firstAttribute="top" secondItem="XAu-zf-YNe" secondAttribute="top" constant="8" id="g4e-ui-JxO"/>
                                     <constraint firstItem="bpv-qR-Ah6" firstAttribute="leading" secondItem="4vd-Rq-HhZ" secondAttribute="leading" id="h88-eM-d8p"/>
                                     <constraint firstItem="4vd-Rq-HhZ" firstAttribute="leading" secondItem="7rw-Ru-xbd" secondAttribute="leading" id="ixz-D4-9CQ"/>
+                                    <constraint firstItem="APN-gs-JaR" firstAttribute="top" secondItem="1aH-Ws-f5o" secondAttribute="bottom" constant="6" id="nAx-Jq-efF"/>
+                                    <constraint firstItem="mBx-bx-kf1" firstAttribute="leading" secondItem="APN-gs-JaR" secondAttribute="trailing" constant="8" id="qKa-jO-1xT"/>
                                     <constraint firstItem="bpv-qR-Ah6" firstAttribute="trailing" secondItem="4vd-Rq-HhZ" secondAttribute="trailing" id="reE-yy-hMl"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="dKa-jh-47J"/>
@@ -372,8 +402,13 @@
                     </view>
                     <navigationItem key="navigationItem" id="LGH-wl-gPi"/>
                     <connections>
+                        <outlet property="likeButton" destination="mBx-bx-kf1" id="uBV-Ab-wum"/>
+                        <outlet property="likeCount" destination="AFY-hD-Er6" id="c2I-w8-O9J"/>
+                        <outlet property="messageButton" destination="oiv-jJ-QQR" id="hHc-2e-fKC"/>
                         <outlet property="name" destination="bCq-pm-KN7" id="jBt-LU-jgC"/>
                         <outlet property="profilePicture" destination="7rw-Ru-xbd" id="Jue-mP-fd6"/>
+                        <outlet property="retweetButton" destination="APN-gs-JaR" id="ohX-CZ-vDi"/>
+                        <outlet property="retweetCount" destination="1aH-Ws-f5o" id="dHF-XC-cKR"/>
                         <outlet property="tweetText" destination="4vd-Rq-HhZ" id="OZU-vY-6zi"/>
                         <outlet property="username" destination="g2S-3i-1dy" id="dLb-pn-1bq"/>
                     </connections>
@@ -390,9 +425,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="SteelSeries has officially added two new products to its catalog--the Apex Pro Mini and Apex Pro Mini Wireless keyb" translatesAutoresizingMaskIntoConstraints="NO" id="4Tl-ef-bkf">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4Tl-ef-bkf">
                                 <rect key="frame" x="20" y="64" width="374" height="277"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="277" id="5u0-Mz-igy"/>
                                 </constraints>
@@ -490,6 +525,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tintColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -100,7 +100,7 @@
     tweetCell.tweet = tweet;
     tweetCell.timeSinceTweetLabel.text = [@". " stringByAppendingString:[tweet.timeSinceNowDate shortTimeAgoSinceNow]];
     NSString *profilePictureURLString = tweet.user.profilePicture;
-        NSString *profilePictureURLStringHighQual = [profilePictureURLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+    NSString *profilePictureURLStringHighQual = [profilePictureURLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     NSURL *profilePictureUrl = [NSURL URLWithString:profilePictureURLStringHighQual];
 
     tweetCell.profilePicture.image = nil;
@@ -110,7 +110,20 @@
     tweetCell.profilePicture.layer.cornerRadius = tweetCell.profilePicture.frame.size.width/2;
     tweetCell.profilePicture.clipsToBounds = true;
     tweetCell.profilePicture.layer.borderWidth = 0.05;
-    
+    if(tweetCell.tweet.favorited)
+    {
+        [tweetCell.likeButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
+    }
+    else{
+        [tweetCell.likeButton setImage:[UIImage imageNamed:@"favor-icon"] forState:UIControlStateNormal];
+    }
+    if(tweetCell.tweet.retweeted)
+    {
+        [tweetCell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon-green"] forState:UIControlStateNormal];
+    }
+    else{
+        [tweetCell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
+    }
     
     return tweetCell;
 }
@@ -133,8 +146,6 @@
         DetailsViewController *detailsController = [segue destinationViewController];
         detailsController.tweet = tweet;
     }
-    
-    
 }
 
 @end
