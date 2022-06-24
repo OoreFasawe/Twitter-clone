@@ -15,6 +15,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "ComposeViewController.h"
 #import "DateTools.h"
+#import "DetailsViewController.h"
 
 
 @interface TimelineViewController () <UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate>
@@ -72,15 +73,7 @@
 }
 
 
-#pragma mark - Navigation
 
-//In a storyboard-based application, you will often want to do a little preparation before navigation
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    UINavigationController *navigationController = [segue destinationViewController];
-    ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
-    composeController.delegate = self;
-}
 
 - (void)didTweet:(nonnull Tweet *)tweet {
     [self.arrayOfTweets insertObject:tweet atIndex:0];
@@ -105,25 +98,43 @@
     tweetCell.numRetweets.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
     tweetCell.numLikes.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
     tweetCell.tweet = tweet;
-    
-//    NSDate *date = (NSDate *) tweet.createdAtString;
-//    NSLog(@"%@", tweet.createdAtString);
-//    NSLog(@"%@", date);
-//    
-//    tweetCell.timeSinceTweetLabel.text = [date shortTimeAgoSinceNow];
-//    NSLog(@"%@",tweetCell.timeSinceTweetLabel.text );
     tweetCell.timeSinceTweetLabel.text = [@". " stringByAppendingString:[tweet.timeSinceNowDate shortTimeAgoSinceNow]];
     NSString *profilePictureURLString = tweet.user.profilePicture;
         NSString *profilePictureURLStringHighQual = [profilePictureURLString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
     NSURL *profilePictureUrl = [NSURL URLWithString:profilePictureURLStringHighQual];
-    
-    //not entirely sure why we're saving this yet, will ask later in class, also landscape isn't quite working
-//    NSData *profilePictureUrlData = [NSData dataWithContentsOfURL:profilePictureUrl];
-    
+
     tweetCell.profilePicture.image = nil;
     [tweetCell.profilePicture setImageWithURL:profilePictureUrl];
     
+    tweetCell.profilePicture.layer.masksToBounds = false;
+    tweetCell.profilePicture.layer.cornerRadius = tweetCell.profilePicture.frame.size.width/2;
+    tweetCell.profilePicture.clipsToBounds = true;
+    tweetCell.profilePicture.layer.borderWidth = 0.05;
+    
+    
     return tweetCell;
+}
+
+#pragma mark - Navigation
+
+//In a storyboard-based application, you will often want to do a little preparation before navigation
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if([[segue identifier] isEqualToString:@"ComposeViewController"]){
+        UINavigationController *navigationController = [segue destinationViewController];
+        ComposeViewController *composeController = (ComposeViewController*)navigationController.topViewController;
+        composeController.delegate = self;
+    }
+    else if([[segue identifier] isEqualToString:@"DetailsViewController"]){
+        UITableViewCell *tweetCell = sender;
+        NSIndexPath *myIndexPath = [self.tableView indexPathForCell:tweetCell];
+        // Pass the selected object to the new view controller.
+        Tweet *tweet = self.arrayOfTweets[myIndexPath.row];
+        DetailsViewController *detailsController = [segue destinationViewController];
+        detailsController.tweet = tweet;
+    }
+    
+    
 }
 
 @end

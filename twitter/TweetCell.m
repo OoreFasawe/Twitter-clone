@@ -17,8 +17,6 @@
     // Initialization code
 }
 - (IBAction)didTapFavorite:(id)sender {
-    NSLog(@"%@", [UIImage imageNamed:@"favor-icon-red"]);
-    NSLog(@"%@", [UIImage imageNamed:@"favor-icon"]);
     if(self.tweet.favorited)
     {
         [[APIManager shared] unfavorite:self.tweet completion:^(Tweet *tweet, NSError *error) {}];
