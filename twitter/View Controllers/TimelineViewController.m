@@ -125,6 +125,21 @@
     else{
         [tweetCell.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
     }
+
+    if(tweet.entities[@"media"] && tweet.entities[@"media"][0][@"media_url_https"]){
+        
+        NSString *tweetMediaImageString = tweet.entities[@"media"][0][@"media_url_https"];
+        NSURL *tweetMediaImageUrl = [NSURL URLWithString:tweetMediaImageString];
+        [tweetCell.tweetMediaImage setImageWithURL:tweetMediaImageUrl];
+        tweetCell.tweetMediaImage.layer.cornerRadius = 10;
+        tweetCell.tweetMediaImage.layer.borderWidth = 0.05;
+        
+    }
+    else{
+        tweetCell.tweetMediaImage.image = nil;
+        tweetCell.tweetMediaImage.hidden = YES;
+    }
+    
     
     return tweetCell;
 }

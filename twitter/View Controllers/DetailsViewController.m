@@ -9,6 +9,7 @@
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "APIManager.h"
+#import "DateTools.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
@@ -20,6 +21,8 @@
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UIButton *likeButton;
 @property (weak, nonatomic) IBOutlet UIButton *messageButton;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *tweetMediaImage;
 
 @end
 
@@ -44,6 +47,20 @@
     self.profilePicture.layer.cornerRadius = self.profilePicture.frame.size.width/2;
     self.profilePicture.clipsToBounds = true;
     self.profilePicture.layer.borderWidth = 0.05;
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    formatter.dateStyle = NSDateFormatterShortStyle;
+    formatter.timeStyle = NSDateFormatterNoStyle;
+            // Convert Date to String
+    NSString *tweetDateForm = [formatter stringFromDate:self.tweet.timeSinceNowDate];
+            
+    formatter.dateStyle = NSDateFormatterNoStyle;
+    formatter.timeStyle = NSDateFormatterShortStyle;
+    NSString *tweetTimeForm = [formatter stringFromDate:self.tweet.timeSinceNowDate];
+    
+    self.dateLabel.text = [[tweetTimeForm stringByAppendingString:@" . "] stringByAppendingString:tweetDateForm];
+    
+    
     if(self.tweet.favorited)
     {
         [self.likeButton setImage:[UIImage imageNamed:@"favor-icon-red"] forState:UIControlStateNormal];
@@ -57,6 +74,20 @@
     }
     else{
         [self.retweetButton setImage:[UIImage imageNamed:@"retweet-icon"] forState:UIControlStateNormal];
+    }
+    
+    if(self.tweet.entities[@"media"] && self.tweet.entities[@"media"][0][@"media_url_https"]){
+        
+        NSString *tweetMediaImageString = self.tweet.entities[@"media"][0][@"media_url_https"];
+        NSURL *tweetMediaImageUrl = [NSURL URLWithString:tweetMediaImageString];
+        [self.tweetMediaImage setImageWithURL:tweetMediaImageUrl];
+        self.tweetMediaImage.layer.cornerRadius = 10;
+        self.tweetMediaImage.layer.borderWidth = 0.05;
+        
+    }
+    else{
+        self.tweetMediaImage.image = nil;
+        self.tweetMediaImage.hidden = YES;
     }
     
     [self refreshData];
