@@ -23,6 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) Tweet *tweet;
 @property (weak, nonatomic) IBOutlet UILabel *username;
 @property (weak, nonatomic) IBOutlet UILabel *timeSinceTweetLabel;
+@property (weak, nonatomic) IBOutlet UITextView *textWithLink;
 
 @end
 

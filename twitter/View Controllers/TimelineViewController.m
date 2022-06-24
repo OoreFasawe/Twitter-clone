@@ -93,6 +93,7 @@
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
 
     tweetCell.tweetText.text = tweet.text;
+    tweetCell.textWithLink.text = tweet.text;
     tweetCell.author.text = tweet.user.name;
     tweetCell.username.text = [@"@" stringByAppendingString:tweet.user.screenName];
     tweetCell.numRetweets.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
