@@ -54,6 +54,10 @@ Here's a walkthrough of implemented user stories:
 ![](https://i.imgur.com/SDp0ibX.gif)
 ![](https://i.imgur.com/aYDUgrt.gif)
 
+
+If two gifs don't appear, find gifs here, anyone at meta should be able to open it.
+https://drive.google.com/drive/folders/1qJHxr4e3iELSpFxL1fNr1e9evwed-tEF?usp=sharing
+
 <img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
