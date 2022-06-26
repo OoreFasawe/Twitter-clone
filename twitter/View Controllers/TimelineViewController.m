@@ -60,15 +60,11 @@
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets.count > 0) {
-            NSLog(@"😎😎😎 Successfully loaded home timeline");
             self.arrayOfTweets = (NSMutableArray *) tweets;
             [self.refreshControl endRefreshing];
             [self.tableView reloadData];
         } else {
-            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
         }
-        
-        
     }];
 }
 
@@ -145,9 +141,6 @@
 }
 
 #pragma mark - Navigation
-
-//In a storyboard-based application, you will often want to do a little preparation before navigation
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if([[segue identifier] isEqualToString:@"ComposeViewController"]){
         UINavigationController *navigationController = [segue destinationViewController];

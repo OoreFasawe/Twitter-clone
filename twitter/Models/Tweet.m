@@ -15,7 +15,6 @@
     self = [super init];
 
     if (self) {
-        // Is this a re-tweet?
         NSDictionary *originalTweet = dictionary[@"retweeted_status"];
         if (originalTweet != nil) {
             NSDictionary *userDictionary = dictionary[@"user"];
@@ -49,7 +48,6 @@
         self.createdAtString = [formatter stringFromDate:date];
         
         self.entities = dictionary[@"entities"];
-        
     }
     return self;
 }
